@@ -25,7 +25,10 @@ SECRET_KEY = 'django-insecure-vu^izv1035j*&_(-=4-#dp=h9l0!aofgej9+28apb)v9+e#m98
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    'f757-209-166-122-22.ngrok-free.app'
+]
 
 
 # Application definition
@@ -50,7 +53,28 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'driver.quickstart.middleware.RequestLoggingMiddleware',  # Updated to 'driver.quickstart.middleware.RequestLoggingMiddleware
+
 ]
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+    },
+}
+
+
 
 ROOT_URLCONF = 'driver.urls'
 
