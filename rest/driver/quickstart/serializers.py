@@ -1,5 +1,6 @@
 from django.contrib.auth.models import Group, User
 from rest_framework import serializers
+from driver.quickstart.models import Codebase
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -12,3 +13,9 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Group
         fields = ['url', 'name']
+
+
+class CodebaseSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Codebase
+        fields = ['url', 'name', 'description', 'created', 'updated', 'owner']

@@ -1,7 +1,8 @@
 from django.contrib.auth.models import Group, User
 from rest_framework import permissions, viewsets
 
-from driver.quickstart.serializers import GroupSerializer, UserSerializer
+from driver.quickstart.serializers import GroupSerializer, UserSerializer, CodebaseSerializer
+from driver.quickstart.models import Codebase
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -19,4 +20,13 @@ class GroupViewSet(viewsets.ModelViewSet):
     """
     queryset = Group.objects.all().order_by('name')
     serializer_class = GroupSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class CodebaseViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows codebases to be viewed or edited.
+    """
+    queryset = Codebase.objects.all().order_by('name')
+    serializer_class = CodebaseSerializer
     permission_classes = [permissions.IsAuthenticated]

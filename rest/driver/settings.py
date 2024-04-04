@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'driver.quickstart',  # Updated to 'driver.quickstart'
+
 ]
 
 MIDDLEWARE = [
