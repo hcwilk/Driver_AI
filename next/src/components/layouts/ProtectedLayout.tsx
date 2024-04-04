@@ -32,8 +32,7 @@ export default function ProtectedLayout({
         <>
             <div className="flex justify-center flex-col bg-black w-full h-auto min-h-screen">
                 <Header />
-                <div className="w-full rounded-t-[40px] bg-white min-h-screen">
-
+                <div className="w-full rounded-t-[40px] bg-white flex flex-1">
                     {children}
                 </div>
             </div>

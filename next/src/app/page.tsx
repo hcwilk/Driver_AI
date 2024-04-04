@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <ProtectedLayout>
 
-      <div className="flex flex-col items-center w-full flex-1">
+      <div className="flex flex-col items-center w-full flex-1 mt-[150px]">
         Test
 
       </div>

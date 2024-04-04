@@ -34,7 +34,7 @@ const SignIn: React.FC = () => {
 
     return (
         <DefaultLayout>
-            <div className="w-full bg-white text-black flex-1 rounded-b-[40px]">
+            <div className="w-full bg-white text-black flex-1">
                 <div className="flex flex-wrap items-center">
                     <div className="hidden w-full xl:block xl:w-1/2">
                         <div className="px-26 text-center">
