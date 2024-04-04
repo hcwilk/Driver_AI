@@ -4,6 +4,7 @@ import Header from "../Header";
 import { useAuth } from "@/lib/firebase/AuthProvider";
 import { useRouter } from "next/navigation";
 import Head from "next/head";
+import Loading from "../Loading";
 
 export default function ProtectedLayout({
     children,
@@ -25,13 +26,13 @@ export default function ProtectedLayout({
     console.log("currentUser", currentUser);
 
     if (!currentUser) {
-        return <div>Loading...</div>; // Or a loading indicator component
+        return <Loading />; // Or a loading indicator component
     }
     return (
         <>
             <div className="flex justify-center flex-col bg-black w-full h-auto min-h-screen">
                 <Header />
-                <div className="w-full relative rounded-t-[40px] bg-white min-h-screen">
+                <div className="w-full rounded-t-[40px] bg-white min-h-screen">
 
                     {children}
                 </div>

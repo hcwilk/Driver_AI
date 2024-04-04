@@ -1,13 +1,32 @@
 
+import { signOut } from "firebase/auth";
+
+import { useAuth } from "@/lib/firebase/AuthProvider";
+import { useRouter } from "next/navigation";
+import { auth } from "@/lib/firebase/firebase-config";
 import { useState } from "react"
 
 export default function Header() {
 
     const [isOpen, setIsOpen] = useState(false)
+    const { setCurrentUser } = useAuth();
+    const router = useRouter()
+
+    const handleLogout = async () => {
+        try {
+            await signOut(auth);
+            setCurrentUser(null);
+            router.push("/auth/signin");
+
+        } catch (error) {
+            console.error("Failed to sign out:", error);
+        }
+    };
+
 
 
     return (
-        <div className={`bg-black ${isOpen ? 'h-[500px] md:h-[190px] lg:h-[210px]' : 'h-[8px]'} w-full text-black`}>
+        <div className={`bg-black ${isOpen ? 'h-[420px] md:h-[210px] lg:h-[230px]' : 'h-[8px]'} w-full text-black`}>
             <div className="absolute left-0 right-0 top-2 z-40 pt-14">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="mx-auto max-w-2xl lg:max-w-none">
@@ -29,15 +48,12 @@ export default function Header() {
                                         </button>
                                     </div>
 
-                                    <div className="grid grid-cols-1 divide-zinc-800 md:grid-cols-4 md:divide-x text-white h-fit">
+                                    <div className="mt-5 grid grid-cols-1 divide-zinc-800 md:grid-cols-3 md:divide-x text-white h-fit">
                                         <a className="group relative isolate flex items-center justify-center px-2 py-8 text-lg sm:mx-0 sm:px-0 lg:py-5 lg:text-2xl" href="/">Home <span className="absolute inset-y-0 left-0 right-0 -z-10 w-full bg-neutral-900 opacity-0 transition group-hover:opacity-100"></span>
                                         </a>
-                                        <a className="group relative isolate flex items-center justify-center px-2 py-8 text-lg sm:mx-0 sm:px-0 lg:py-10 lg:text-2xl" href="/how-it-works">How it Works <span className="absolute inset-y-0 left-0 right-0 -z-10 w-full bg-neutral-900 opacity-0 transition group-hover:opacity-100"></span>
+                                        <a className="group relative isolate flex items-center justify-center px-2 py-8 text-lg sm:mx-0 sm:px-0 lg:py-10 lg:text-2xl" href="/code">Code<span className="absolute inset-y-0 left-0 right-0 -z-10 w-full bg-neutral-900 opacity-0 transition group-hover:opacity-100"></span>
                                         </a>
-                                        <a className="group relative isolate flex items-center justify-center px-2 py-8 text-lg sm:mx-0 sm:px-0 lg:py-10 lg:text-2xl" href="/about">About <span className="absolute inset-y-0 left-0 right-0 -z-10 w-full bg-neutral-900 opacity-0 transition group-hover:opacity-100"></span>
-                                        </a>
-                                        <a className="group relative isolate flex items-center justify-center px-2 py-8 text-lg sm:mx-0 sm:px-0 lg:py-10 lg:text-2xl" href="/contact">Contact <span className="absolute inset-y-0 left-0 right-0 -z-10 w-full bg-neutral-900 opacity-0 transition group-hover:opacity-100"></span>
-                                        </a>
+                                        <button className="group relative isolate flex items-center justify-center px-2 py-8 text-lg sm:mx-0 sm:px-0 lg:py-10 lg:text-2xl" onClick={handleLogout} >Sign out</button>
                                     </div>
 
                                 </>
