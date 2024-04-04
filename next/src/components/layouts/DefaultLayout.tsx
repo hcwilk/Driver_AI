@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, ReactNode } from "react";
-import Header from "@/components/Header";
+import AuthHeader from "../AuthHeader";
 
 export default function DefaultLayout({
     children,
@@ -11,8 +11,9 @@ export default function DefaultLayout({
     return (
         <>
             <div className="flex justify-center flex-col bg-black w-full h-auto min-h-screen">
+                <AuthHeader />
 
-                <Header />
+
                 {children}
             </div>
         </>
