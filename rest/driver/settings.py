@@ -14,6 +14,7 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+APPEND_SLASH = False
 
 
 # Quick-start development settings - unsuitable for production
@@ -21,6 +22,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-vu^izv1035j*&_(-=4-#dp=h9l0!aofgej9+28apb)v9+e#m98'
+
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

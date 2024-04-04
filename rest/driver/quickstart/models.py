@@ -8,7 +8,8 @@ class Codebase(models.Model):
     description = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    owner = models.ForeignKey('auth.User', related_name='codebases', on_delete=models.CASCADE)
+    owner = models.TextField()
+    url = models.URLField(default='')
 
     def __str__(self):
         return self.name
