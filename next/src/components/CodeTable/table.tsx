@@ -2,15 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Codebase, columns } from "./columns";
 import { DataTable } from "./data-table";
 
+// return a promise that queries the api/codebases endpoint
 function getData() {
-    return Promise.resolve([
-        {
-            name: "Codebase 1",
-            created: "2022-01-01",
-            owner: "Alice",
-            url: "https://example.com/codebase-1",
-        },
-    ]);
+    return fetch("/api/codebases").then((res) => res.json());
 }
 
 export default function CodeTable() {
@@ -19,7 +13,8 @@ export default function CodeTable() {
     useEffect(() => {
         (async () => {
             const fetchedData = await getData();
-            setData(fetchedData);
+            console.log('fetched', fetchedData);
+            setData(fetchedData.results[0]);
         })();
     }, []);
 

@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
             },
         };
 
-        const response = await axios.get(backendUrl + "/users/", config); // Ensure the URL ends with a slash '/'
+        const response = await axios.get(backendUrl + "/codebases/", config); // Ensure the URL ends with a slash '/'
         return NextResponse.json(response.data, { status: 200 });
     } catch (e) {
         console.error('Error fetching data:', e);
