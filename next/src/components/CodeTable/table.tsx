@@ -14,7 +14,7 @@ export default function CodeTable() {
         (async () => {
             const fetchedData = await getData();
             console.log('fetched', fetchedData);
-            setData(fetchedData.results[0]);
+            setData(fetchedData.results);
         })();
     }, []);
 
