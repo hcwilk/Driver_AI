@@ -10,7 +10,7 @@ class Codebase(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     owner = models.TextField()
-    url = models.URLField(default='')
+    url = models.TextField()
 
     def __str__(self):
         return self.name

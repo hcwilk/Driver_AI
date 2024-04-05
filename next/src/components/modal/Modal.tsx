@@ -1,6 +1,7 @@
+import { set } from "firebase/database"
 import { useState } from "react"
 
-export default function Modal({ open, setOpen }: { open: boolean, setOpen: any }) {
+export default function Modal({ open, setOpen, setTest }: { open: boolean, setOpen: any, setTest: any }) {
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
     const [owner, setOwner] = useState("")
@@ -17,7 +18,8 @@ export default function Modal({ open, setOpen }: { open: boolean, setOpen: any }
             },
             body: JSON.stringify(codebase)
         })
-        console.log(response)
+        setOpen(false)
+        setTest((prev: any) => prev + 1)
     }
 
     return (
