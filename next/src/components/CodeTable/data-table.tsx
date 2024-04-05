@@ -19,11 +19,13 @@ import {
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
     data: TData[]
+    loading?: boolean
 }
 
 export function DataTable<TData, TValue>({
     columns,
     data,
+    loading,
 }: DataTableProps<TData, TValue>) {
     const table = useReactTable({
         data,
@@ -31,7 +33,6 @@ export function DataTable<TData, TValue>({
         getCoreRowModel: getCoreRowModel(),
     })
 
-    console.log("table", data)
 
     return (
         <div className="rounded-md border">
@@ -71,7 +72,16 @@ export function DataTable<TData, TValue>({
                     ) : (
                         <TableRow>
                             <TableCell colSpan={columns.length} className="h-24 text-center">
-                                No results.
+                                {loading ?
+                                    <>
+                                        Loading...
+                                    </>
+                                    :
+                                    <>
+                                        No results.
+                                    </>
+                                }
+
                             </TableCell>
                         </TableRow>
                     )}

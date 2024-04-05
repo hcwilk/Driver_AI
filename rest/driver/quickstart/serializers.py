@@ -18,4 +18,4 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class CodebaseSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Codebase
-        fields = ['url', 'name', 'description', 'created', 'updated', 'owner']
+        fields = ['url', 'name', 'description', 'created', 'updated', 'owner', 'id']
