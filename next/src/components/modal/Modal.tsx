@@ -10,7 +10,6 @@ export default function Modal({ open, setOpen, setTest }: { open: boolean, setOp
     const handleSubmit = async (e: any) => {
         e.preventDefault()
         const codebase = { name, owner, url, description }
-        console.log(codebase)
         await fetch("/api/codebases", {
             method: "POST",
             headers: {

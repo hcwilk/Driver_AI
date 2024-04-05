@@ -16,11 +16,9 @@ const SignIn: React.FC = () => {
     const router = useRouter()
 
     const handleSignIn = async (e: any) => {
-        console.log("Sign in clicked");
         e.preventDefault();
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
-            console.log("Signed in user: ", userCredential.user);
             setCurrentUser(userCredential.user);
             router.push('/');
         } catch (error) {

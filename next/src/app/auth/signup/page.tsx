@@ -27,14 +27,12 @@ const SignIn: React.FC = () => {
 
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-            console.log('User created:', userCredential.user);
             setCurrentUser(userCredential.user);
             router.push('/');
 
         } catch (error: any) {
             console.error('Error signing up:', error.message);
         }
-        console.log('Sign up form submitted');
     };
 
 

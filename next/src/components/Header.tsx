@@ -48,10 +48,8 @@ export default function Header() {
                                         </button>
                                     </div>
 
-                                    <div className="mt-5 grid grid-cols-1 divide-zinc-800 md:grid-cols-3 md:divide-x text-white h-fit">
+                                    <div className="mt-5 grid grid-cols-1 divide-zinc-800 md:grid-cols-2 md:divide-x text-white h-fit">
                                         <a className="group relative isolate flex items-center justify-center px-2 py-8 text-lg sm:mx-0 sm:px-0 lg:py-5 lg:text-2xl" href="/">Home <span className="absolute inset-y-0 left-0 right-0 -z-10 w-full bg-neutral-900 opacity-0 transition group-hover:opacity-100"></span>
-                                        </a>
-                                        <a className="group relative isolate flex items-center justify-center px-2 py-8 text-lg sm:mx-0 sm:px-0 lg:py-10 lg:text-2xl" href="/code">Code<span className="absolute inset-y-0 left-0 right-0 -z-10 w-full bg-neutral-900 opacity-0 transition group-hover:opacity-100"></span>
                                         </a>
                                         <button className="group relative isolate flex items-center justify-center px-2 py-8 text-lg sm:mx-0 sm:px-0 lg:py-10 lg:text-2xl" onClick={handleLogout} >Sign out</button>
                                     </div>

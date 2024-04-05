@@ -101,7 +101,6 @@ export async function DELETE(request: NextRequest) {
         }
 
         const url = new URL(request.url);
-        console.log('this is url', url)
         const id = url.searchParams.get('id');
 
 

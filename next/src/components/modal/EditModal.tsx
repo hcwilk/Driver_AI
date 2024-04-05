@@ -14,7 +14,6 @@ export default function EditModal({ open, setOpen, setTest, data }: any) {
     const handleSubmit = async (e: any) => {
         e.preventDefault()
         const codebase = { name, owner, url, description }
-        console.log(codebase)
         await fetch(`/api/codebases?id=${data.id}`, {
             method: "PATCH",
             headers: {

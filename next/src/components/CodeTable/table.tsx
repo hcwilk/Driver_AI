@@ -17,7 +17,6 @@ async function fetchData(setData: any, setLoading: any, handleEdit: any) {
             return {
                 ...item,
                 onDelete: async () => {
-                    console.log(`Delete item with id: ${item.id}`);
                     try {
                         await axios.delete(`/api/codebases/?id=${item.id}`);
 
@@ -27,7 +26,6 @@ async function fetchData(setData: any, setLoading: any, handleEdit: any) {
                     }
                 },
                 onEdit: () => {
-                    console.log(`Edit item with id: ${item.id}`);
                     handleEdit(item);
                 },
             };
@@ -54,7 +52,6 @@ export default function CodeTable({ test, setTest }: any) {
 
 
     useEffect(() => {
-        console.log("Fetching data...");
         fetchData(setData, setLoading, handleEdit);
     }, [test]);
 
