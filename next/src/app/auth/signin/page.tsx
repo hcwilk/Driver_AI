@@ -12,14 +12,12 @@ import { useRouter } from "next/navigation";
 const SignIn: React.FC = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { setCurrentUser } = useAuth(); // Assuming your context provides this function
+    const { setCurrentUser } = useAuth();
     const router = useRouter()
 
     const handleSignIn = async (e: any) => {
         console.log("Sign in clicked");
         e.preventDefault();
-        // console.log("Email: ", email);
-        // console.log("Password", password);
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             console.log("Signed in user: ", userCredential.user);
@@ -27,7 +25,6 @@ const SignIn: React.FC = () => {
             router.push('/');
         } catch (error) {
             console.error("Failed to sign in: ", error);
-            // Handle errors here, such as displaying a notification
         }
     };
 

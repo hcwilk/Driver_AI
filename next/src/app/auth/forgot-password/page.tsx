@@ -15,11 +15,11 @@ const ForgotPassword: React.FC = () => {
 
     const handleForgotPassword = async (e: any) => {
         e.preventDefault();
-        if (email) { // Check if email is not empty
+        if (email) {
             try {
                 await sendPasswordResetEmail(auth, email);
                 alert("Password reset email sent successfully. Check your inbox.");
-                router.push("/auth/signin"); // Redirect user to the sign-in page or any other page you prefer
+                router.push("/auth/signin");
             } catch (error) {
                 console.error("Error sending password reset email:", error);
                 alert("Failed to send password reset email. Please try again.");

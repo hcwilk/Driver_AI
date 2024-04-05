@@ -1,18 +1,22 @@
+
 import { set } from "firebase/database"
 import { useState } from "react"
 
-export default function Modal({ open, setOpen, setTest }: { open: boolean, setOpen: any, setTest: any }) {
-    const [name, setName] = useState("")
-    const [description, setDescription] = useState("")
-    const [owner, setOwner] = useState("")
-    const [url, setUrl] = useState("")
+export default function EditModal({ open, setOpen, setTest, data }: any) {
+    if (!open) {
+        return null
+    }
+    const [name, setName] = useState(data.name)
+    const [description, setDescription] = useState(data.description)
+    const [owner, setOwner] = useState(data.owner)
+    const [url, setUrl] = useState(data.url)
 
     const handleSubmit = async (e: any) => {
         e.preventDefault()
         const codebase = { name, owner, url, description }
         console.log(codebase)
-        await fetch("/api/codebases", {
-            method: "POST",
+        await fetch(`/api/codebases?id=${data.id}`, {
+            method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -101,7 +105,7 @@ export default function Modal({ open, setOpen, setTest }: { open: boolean, setOp
 
 
                                             <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600 w-full justify-center">
-                                                <button data-modal-hide="default-modal" type="submit" className="hover:text-white w-1/2 cursor-pointer rounded-lg border border-primary bg-gradient-to-br from-zinc-100 to-zinc-500 p-4 text-black transition-all duration-300 ease-in-out hover:bg-gradient-to-bl hover:from-zinc-500 hover:to-zinc-700">Submit</button>
+                                                <button data-modal-hide="default-modal" type="submit" className="hover:text-white w-1/2 cursor-pointer rounded-lg border border-primary bg-gradient-to-br from-zinc-100 to-zinc-500 p-4 text-black transition-all duration-300 ease-in-out hover:bg-gradient-to-bl hover:from-zinc-500 hover:to-zinc-700">Edit</button>
                                             </div>
 
                                         </form>

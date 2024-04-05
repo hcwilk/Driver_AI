@@ -3,7 +3,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase-config';
 
 type AuthContextType = {
-  currentUser: null | object; // Use a more specific type if possible, e.g., User
+  currentUser: null | object;
   setCurrentUser: (user: null | object) => void;
   loading: boolean;
 };

@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Codebase, columns } from "./columns";
 import { DataTable } from "./data-table";
 import axios from 'axios';
+import EditModal from '../modal/EditModal';
 
-// Function to fetch data from the api/codebases endpoint
-async function fetchData(setData: any, setLoading: any) {
+
+
+async function fetchData(setData: any, setLoading: any, handleEdit: any) {
     try {
         const response = await fetch("/api/codebases");
         if (!response.ok) {
@@ -15,20 +17,18 @@ async function fetchData(setData: any, setLoading: any) {
             return {
                 ...item,
                 onDelete: async () => {
-                    // Perform delete operation
                     console.log(`Delete item with id: ${item.id}`);
                     try {
                         await axios.delete(`/api/codebases/?id=${item.id}`);
-                        // After deletion, refetch data
-                        fetchData(setData, setLoading);
+
+                        fetchData(setData, setLoading, handleEdit);
                     } catch (error) {
                         console.error('Error deleting item:', error);
                     }
                 },
                 onEdit: () => {
-                    // Perform edit operation
                     console.log(`Edit item with id: ${item.id}`);
-                    // After editing, you would likely want to refetch data here as well
+                    handleEdit(item);
                 },
             };
         });
@@ -40,26 +40,40 @@ async function fetchData(setData: any, setLoading: any) {
     setLoading(false);
 }
 
-export default function CodeTable({ test }: any) {
+
+export default function CodeTable({ test, setTest }: any) {
     const [data, setData] = useState<Codebase[]>([]);
     const [loading, setLoading] = useState(true);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [currentItemToEdit, setCurrentItemToEdit] = useState<Codebase | null>(null);
+
+    const handleEdit = (item: Codebase) => {
+        setCurrentItemToEdit(item);
+        setIsEditModalOpen(true);
+    };
+
 
     useEffect(() => {
         console.log("Fetching data...");
-        fetchData(setData, setLoading);
-    }, [test]); // Empty dependency array ensures this effect runs once on mount
+        fetchData(setData, setLoading, handleEdit);
+    }, [test]);
 
-    // Pass down the fetchData function to the DataTable so it can refetch when needed
     return (
-        <div className="container mx-auto py-5">
-            <DataTable
-                columns={columns}
-                data={data}
-                loading={loading}
-                setLoading={setLoading}
-                setData={setData}
-                fetchData={() => fetchData(setData, setLoading)} // Pass this as a prop to DataTable
-            />
-        </div>
+        <>
+            <div className="container mx-auto py-5">
+
+                <DataTable
+                    columns={columns}
+                    data={data}
+                    loading={loading}
+                    setLoading={setLoading}
+                    setData={setData}
+                    handleEdit={handleEdit}
+                    fetchData={() => fetchData(setData, setLoading, handleEdit)}
+                />
+                <EditModal open={isEditModalOpen} setOpen={setIsEditModalOpen} data={currentItemToEdit} setTest={setTest} />
+            </div>
+
+        </>
     );
 }

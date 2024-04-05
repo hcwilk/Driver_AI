@@ -4,6 +4,7 @@ import ProtectedLayout from "@/components/layouts/ProtectedLayout";
 import Modal from "@/components/modal/Modal";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import EditModal from "@/components/modal/EditModal";
 
 export default function Home() {
 
@@ -20,7 +21,7 @@ export default function Home() {
                         Add new Codebase
                     </button>
                 </div>
-                <CodeTable test={test} />
+                <CodeTable test={test} setTest={setTest} />
 
             </div>
 

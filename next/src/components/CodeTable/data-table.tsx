@@ -17,8 +17,9 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { set } from "firebase/database"
+import EditModal from "../modal/EditModal"
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
@@ -27,6 +28,7 @@ interface DataTableProps<TData, TValue> {
     loading?: boolean
     setLoading?: any
     fetchData?: any
+    handleEdit?: any
 }
 
 export function DataTable<TData, TValue>({
@@ -34,41 +36,15 @@ export function DataTable<TData, TValue>({
     data,
     setData,
     loading,
-    setLoading
+    setLoading,
+    handleEdit
 }: DataTableProps<TData, TValue>) {
+    const [open, setOpen] = useState(false);
     const table = useReactTable({
         data,
         columns,
         getCoreRowModel: getCoreRowModel(),
     })
-
-    // const fetchData = async () => {
-    //     const fetchedData: any = await fetch("/api/codebases")
-    //     const enhancedData = fetchedData.results.map((item: any, index: number) => ({
-    //         ...item,
-    //         onDelete: () => {
-    //             // Perform delete operation, like calling an API to delete the item
-    //             console.log(`Delete item with id: ${index}`);
-    //             const body = { id: item.id };
-    //             axios.delete(`/api/codebases/?id=${item.id}`).then(() => {
-    //                 // Remove the item from the local state
-    //                 setData((prevData: any) => prevData.filter((_: any, i: any) => i !== index));
-    //             }
-    //             ).catch((error) => {
-    //                 console.error('Error deleting item:', error);
-    //             });
-    //             // You may need to refresh the data or remove the item from the local state
-    //         },
-    //         onEdit: () => {
-    //             // Perform edit operation, like opening a modal with the item's details
-    //             console.log(`Edit item with id: ${index}`);
-    //             // Implement the logic to edit the item
-    //         },
-    //     }));
-
-    //     setData(enhancedData);
-    //     setLoading(false);
-    // }
 
 
 

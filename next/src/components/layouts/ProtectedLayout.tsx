@@ -26,7 +26,7 @@ export default function ProtectedLayout({
     console.log("currentUser", currentUser);
 
     if (!currentUser) {
-        return <Loading />; // Or a loading indicator component
+        return <Loading />;
     }
     return (
         <>

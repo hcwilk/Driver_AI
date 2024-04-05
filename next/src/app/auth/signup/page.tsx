@@ -18,25 +18,8 @@ const SignIn: React.FC = () => {
     const { setCurrentUser } = useAuth();
     const router = useRouter();
 
-    const handleSignIn = async (e: any) => {
-        e.preventDefault();
-        // console.log("Email: ", email);
-        // console.log("Password", password);
-        try {
-            const userCredential = await signInWithEmailAndPassword(auth, email, password);
-            setCurrentUser(userCredential.user); // Update the global auth context
-            router.push('/');
-        } catch (error) {
-            console.error("Failed to sign in: ", error);
-            // Handle errors here, such as displaying a notification
-        }
-    };
-
     const handleSignUp = async (e: any) => {
         e.preventDefault();
-
-        // Optional: Add additional validation for inputs here
-
         if (password !== confirmPassword) {
             alert('Passwords do not match');
             return;
@@ -48,10 +31,8 @@ const SignIn: React.FC = () => {
             setCurrentUser(userCredential.user);
             router.push('/');
 
-            // Update the global auth state or redirect the user to another page
         } catch (error: any) {
             console.error('Error signing up:', error.message);
-            // Handle errors (e.g., user already exists, weak password, etc.)
         }
         console.log('Sign up form submitted');
     };
