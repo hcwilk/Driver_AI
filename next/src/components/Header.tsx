@@ -26,7 +26,7 @@ export default function Header() {
 
 
     return (
-        <div className={`bg-black ${isOpen ? 'h-[420px] md:h-[210px] lg:h-[230px]' : 'h-[8px]'} w-full text-black`}>
+        <div className={`bg-black ${isOpen ? 'h-[320px] md:h-[210px] lg:h-[230px]' : 'h-[8px]'} w-full text-black`}>
             <div className="absolute left-0 right-0 top-2 z-40 pt-14">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="mx-auto max-w-2xl lg:max-w-none">
