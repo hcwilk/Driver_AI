@@ -57,7 +57,7 @@ const SignIn: React.FC = () => {
                     <div className="w-full border-stroke dark:border-strokedark xl:w-1/2 xl:border-l-2">
                         <div className="w-full p-4 sm:p-12.5 xl:p-17.5">
                             <h2 className="text-2xl font-bold sm:text-title-xl2">
-                                Sign In
+                                Sign Up
                             </h2>
 
                             <form onSubmit={handleSignUp}>

@@ -92,7 +92,7 @@ export function DataTable<TData, TValue>({
                                     </>
                                     :
                                     <>
-                                        No results.
+                                        No data here yet!
                                     </>
                                 }
 
